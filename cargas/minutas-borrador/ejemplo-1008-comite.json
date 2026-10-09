@@ -1,0 +1,52 @@
+{
+ "id": "min-r-demo-comercial",
+ "reunion": "r-demo-comercial",
+ "titulo": "MENSUAL: Comité Comercial (ejemplo)",
+ "fechaTxt": "08 de octubre de 2026",
+ "asunto": "Minuta Estratégica: MENSUAL Comité Comercial (08 de octubre de 2026)",
+ "para": [
+  {
+   "nombre": "Correo de ejemplo",
+   "email": "ejemplo@ejemplo.com"
+  }
+ ],
+ "saludo": "Dirección / Gerencia General / Jefe Comercial,",
+ "intro": "A continuación, el resumen y los acuerdos de la revisión mensual (contenido de ejemplo).",
+ "resumen": [
+  "**Mes:** 8 equipos y 1 servicio vendidos (dato de ejemplo).",
+  "**Indicadores:** mejor mes en atención de la primera hora.",
+  "**Riesgo principal:** flujo de efectivo del cierre de año."
+ ],
+ "decisiones": [
+  "Decisión: negociar priorizando el flujo en octubre y noviembre."
+ ],
+ "pendientes": [
+  "Pendiente: fecha de la planeación anual (Pendiente por confirmar).",
+  "Riesgo: ventas a plazos limitan el flujo. Mitigación: pocos financiamientos al mes."
+ ],
+ "acciones": [
+  {
+   "accion": "Entregar el corte semanal de leads por asesor",
+   "resp": "Jefe Comercial",
+   "fecha": "12-oct",
+   "notas": "",
+   "itemId": "demo-8",
+   "sync": [
+    "Entregar el corte semanal de leads por asesor",
+    "Jefe Comercial",
+    "12-oct",
+    ""
+   ]
+  },
+  {
+   "accion": "Traer a la mesa los casos que no den resultados",
+   "resp": "Líderes",
+   "fecha": "Continuo",
+   "notas": "Solo va en el correo.",
+   "itemId": "-"
+  }
+ ],
+ "cierre": "Ejemplo: el reto del trimestre es el flujo; se revisa en el LOOPS.",
+ "estado": "borrador",
+ "upd": 0
+}

@@ -1,0 +1,5 @@
+# datos reales: nunca se suben
+cargas/version-daray/*.html
+cargas/calendario/*.json
+cargas/index-antes-*.html
+*.bak

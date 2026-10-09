@@ -1,0 +1,1 @@
+Aquí va la respuesta tal cual de Google Calendar (list_events) en JSON. En el modelo no se incluye ningún calendario real.

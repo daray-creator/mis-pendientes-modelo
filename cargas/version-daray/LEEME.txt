@@ -1,0 +1,1 @@
+Aquí se deja el archivo que Daray descarga del sistema ("Descargar versión actual") para que el actualizador tome sus cambios como base.

@@ -1,0 +1,16 @@
+{
+ "dominosXlsx": "",
+ "kpisHtml": "",
+ "domCongelados": {
+  "ids": [
+   "t-d-admin",
+   "t-d-exp",
+   "t-d-com",
+   "t-d-mkt",
+   "t-d-mkp",
+   "t-d-sou"
+  ],
+  "desde": "2026-10-06",
+  "nota": "se fusionaron con las señales"
+ }
+}

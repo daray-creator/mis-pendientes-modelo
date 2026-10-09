@@ -1,0 +1,31 @@
+{
+ "reunion": {
+  "id": "r-demo-comercial",
+  "titulo": "MENSUAL: Comité Comercial (ejemplo)",
+  "fecha": "2026-10-08",
+  "notas": "Resumen de la junta, escrito a partir del transcript (no solo del resumen de Gemini)."
+ },
+ "estatus": [
+  {
+   "tema": "t-s3",
+   "id": "s-demo-1008-1",
+   "texto": "Estatus que entra al historial del tema."
+  }
+ ],
+ "items": [
+  {
+   "id": "jdemo-01",
+   "titulo": "Acción nueva que salió de la junta",
+   "tipo": "seguimiento",
+   "resp": "Jefe Comercial",
+   "fecha": "2026-10-12",
+   "tema": "t-s3"
+  }
+ ],
+ "cambios": [
+  {
+   "item": "demo-8",
+   "avance": "Avance sobre un pendiente que ya existía (no se duplica)."
+  }
+ ]
+}

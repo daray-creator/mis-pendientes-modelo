@@ -217,8 +217,7 @@ if (cfg.dominosXlsx && fs.existsSync(cfg.dominosXlsx)) {
     t.proyectos = []; t.fuente = '';
     if (!t.ficha) { t.ficha = { numero: String(n), depto: i.nombre, proposito: '', dueno: '', coord: '', periodo: 'Q4 2026', inicio: '', objetivo: '', riesgos: '', obs: '' }; t.nombre = i.nombre; t.orden = +n; }
   });
-  const agen = getT('t-d-agen'); // Agencia y Taller no es uno de los 9 dominós de Monday: pasa a temas comunes
-  if (agen && agen.grupo === 'domino') agen.grupo = 'tema';
+  // Agencia y Taller es un dominó propio (no viene de Monday); lo deja como dominó.
 }
 
 /* ---------- 6. dueños de dominó y sugerencias de IA ---------- */

@@ -251,6 +251,38 @@ if (fs.existsSync(sugDir)) fs.readdirSync(sugDir).filter(f => f.endsWith('.json'
   fs.readdirSync(dir).filter(n => n.endsWith('.json')).sort().forEach(n => { const m = leer(path.join(dir, n));
     if (D.minutas.some(x => x.id === m.id) || (D.borrados || []).includes('min:' + m.id)) return; // nunca se pisa lo que ella ya editó
     m.upd = m.upd || AHORA; m.estado = 'borrador'; D.minutas.push(m); log.minutasBorrador = (log.minutasBorrador || 0) + 1; }); })();
+/* ---------- fichas de señales (cargas/senales-ficha.json): objetivo, inicio y decisiones ---------- */
+// Solo llena lo que esté vacío: lo que Daray ya escribió nunca se sobrescribe.
+(() => { const f = path.join(CARGAS, 'senales-ficha.json'); if (!fs.existsSync(f)) return; const Fx = leer(f);
+  Object.entries(Fx.senales || {}).forEach(([id, campos]) => { const t = getT(id); if (!t) { faltan.push('tema ' + id); return; }
+    t.ficha = t.ficha || {}; let n = 0;
+    // con cada plan o cierre (Fx.version, ej. "S7 · cierre") se renuevan las decisiones que ella no ha escrito (ficha.decMias)
+    const nueva = Fx.version && t.ficha.decVer !== Fx.version, mias = t.ficha.decMias || [];
+    Object.entries(campos).forEach(([k, v]) => { if (!v) return;
+      if (k.startsWith('dec') && nueva && !mias.includes(k)) { if (t.ficha[k] !== v) { t.ficha[k] = v; n++; } return; }
+      if (!String(t.ficha[k] || '').trim()) { t.ficha[k] = v; n++; } });
+    if (nueva && Object.keys(campos).some(k => k.startsWith('dec'))) t.ficha.decVer = Fx.version;
+    if (n) log.fichas = (log.fichas || 0) + n; }); })();
+/* ---------- objetivo, resumen y conclusión de la semana (cargas/semana-notas.json): borrador; lo que ella escribe gana ---------- */
+(() => { const f = path.join(CARGAS, 'semana-notas.json'); if (!fs.existsSync(f)) return; const N = leer(f); D.semNotas = D.semNotas || {};
+  Object.entries(N.semanas || {}).forEach(([wk, v]) => { const m = D.semNotas[wk] = D.semNotas[wk] || {};
+    ['objetivo', 'resumen', 'conclusion'].forEach(k => { if (v[k] && !(m.mias || []).includes(k) && m[k] !== v[k]) { m[k] = v[k]; m.upd = AHORA; log.semNotas = (log.semNotas || 0) + 1; } }); }); })();
+/* ---------- señales completadas (cargas/senales-cerradas.json): fecha de fin, objetivo y lo que se cumplió ---------- */
+(() => { const f = path.join(CARGAS, 'senales-cerradas.json'); if (!fs.existsSync(f)) return; const C = leer(f);
+  Object.entries(C.senales || {}).forEach(([id, c]) => { const t = getT(id); if (!t) { faltan.push('tema ' + id); return; }
+    if (t.cerrada && t.cerrada.ver === C.version) return;
+    t.cerrada = Object.assign({ ver: C.version }, c); t.upd = AHORA; log.cerradas = (log.cerradas || 0) + 1; }); })();
+/* ---------- re-asignar tema (cargas/retema.json): lo que no es del camino de una señal pasa a su dominó o tema ---------- */
+(() => { const f = path.join(CARGAS, 'retema.json'); if (!fs.existsSync(f)) return; const R = leer(f); D.retema = D.retema || [];
+  Object.entries(R.mover || {}).forEach(([tm, ids]) => ids.forEach(id => { const i = getI(id); if (!i) { faltan.push('pendiente ' + id); return; }
+    const k = R.lote + ':' + id; if (!D.retema.some(x => x[2] === k)) D.retema.push([id, tm, k]);
+    if (i.tema !== tm) { i.tema = tm; log.retema = (log.retema || 0) + 1; } })); })();
+/* ---------- checklist de preparación por reunión (cargas/prep/*.json): [{reunion, puntos:[{id,texto,tipo,item}]}] ---------- */
+// Solo suma puntos nuevos: lo que ella palomeó, agregó o quitó se respeta.
+(() => { const dir = path.join(CARGAS, 'prep'); if (!fs.existsSync(dir)) return;
+  fs.readdirSync(dir).filter(n => n.endsWith('.json')).sort().forEach(n => leer(path.join(dir, n)).forEach(g => { const r = getR(g.reunion); if (!r) { faltan.push('reunión ' + g.reunion); return; }
+    r.prep = r.prep || []; g.puntos.forEach(p => { if (r.prep.some(x => x.id === p.id) || (D.borrados || []).includes(p.id)) return;
+      r.prep.push(Object.assign({ ok: 0, item: '', de: 'claude' }, p)); log.prep = (log.prep || 0) + 1; }); })); })();
 /* ---------- guardar ---------- */
 D.savedAt = 0; D.sync.aplicados = [...APL];
 const json = JSON.stringify(D).replace(/</g, '\\u003c');

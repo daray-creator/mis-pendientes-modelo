@@ -1,0 +1,13 @@
+[
+ {
+  "reunion": "r-demo-rh",
+  "puntos": [
+   {
+    "id": "prep-demo-1",
+    "tipo": "preguntar",
+    "texto": "Ejemplo: ¿ya quedó la fecha del onboarding?",
+    "item": "demo-4"
+   }
+  ]
+ }
+]

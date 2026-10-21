@@ -102,3 +102,12 @@ En esta copia hay un borrador de ejemplo en **Agenda → Minutas por enviar → 
   - `cargas/minutas-enviadas.json`: las minutas encontradas en Gmail (enviados).
   - `cargas/config.json`: los dominós en pausa y las rutas opcionales (Excel de dominós, archivo de KPIs).
 - Hoy el actualizador lo corre Claude (Claude Code), que lee Drive, Calendar y Gmail, escribe los JSON de `cargas/` y ejecuta el script.
+
+## Checklist de preparación por reunión (agregado el 21-oct-2026)
+
+Cada reunión puede traer `prep`: una lista de lo que hay que **preguntar**, **revisar** o **llevar** a esa junta (`{id, texto, tipo, ok, item, de}`). Si el punto se refiere a un pendiente, `item` guarda el id de ese pendiente.
+
+- En Inicio y Agenda, las reuniones **del día de hoy** con puntos llevan el botón 📋 (palomeados / total).
+- Al abrir la reunión, la lista aparece arriba. Ahí se palomea, se agrega con Enter y se quita con ✕. Con "Copiar checklist" se copia para WhatsApp.
+- Debajo de la lista salen solos los pendientes abiertos de la misma serie del calendario (mismo `calId` antes del `_`).
+- El actualizador lee `cargas/prep/*.json` (`[{reunion, puntos:[…]}]`) y solo suma puntos con id nuevo. Lo que el usuario palomea, agrega o quita se respeta.

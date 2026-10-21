@@ -2,7 +2,7 @@
  "reunion": {
   "id": "r-demo-comercial",
   "titulo": "MENSUAL: Comité Comercial (ejemplo)",
-  "fecha": "2026-10-08",
+  "fecha": "2026-10-20",
   "notas": "Resumen de la junta, escrito a partir del transcript (no solo del resumen de Gemini)."
  },
  "estatus": [
@@ -18,7 +18,7 @@
    "titulo": "Acción nueva que salió de la junta",
    "tipo": "seguimiento",
    "resp": "Jefe Comercial",
-   "fecha": "2026-10-12",
+   "fecha": "2026-10-24",
    "tema": "t-s3"
   }
  ],
